@@ -41,6 +41,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
                 $router->post('/', 'PilihanController@add');
                 $router->delete('/{id}', 'PilihanController@delete');
             });
+
+            $router->group(['prefix' => '{soal_id}/kunci'], function () use ($router) {
+                $router->get('/', 'KunciController@get');
+                $router->post('/', 'KunciController@add');
+                $router->delete('/{id}', 'KunciController@delete');
+            });
         });
     });
 });

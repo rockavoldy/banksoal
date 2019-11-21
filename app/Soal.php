@@ -29,6 +29,6 @@ class Soal extends Model
 
   public function kuncis()
   {
-    return $this->hasOne(Kunci::class, 'kunci_id', 'id');
+    return $this->hasOne(Kunci::class, 'soal_id', 'id');
   }
 }
