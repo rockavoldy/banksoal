@@ -21,5 +21,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('me', 'AuthController@me');
+
+        $router->group(['prefix' => 'pelajaran'], function () use ($router) {
+            $router->get('/', 'MatpelController@getAll');
+            $router->get('/{kode}', 'MatpelController@getOne');
+            $router->post('/', 'MatpelController@add');
+            $router->delete('/{kode}', 'MatpelController@delete');
+        });
     });
 });
