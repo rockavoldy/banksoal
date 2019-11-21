@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pilihan extends Model
+class Kunci extends Model
 {
   use Models\Concerns\UsesUuid;
 
   protected $fillable = [
-    'soal_id', 'pilihan'
+    'soal_id', 'kunci_id'
   ];
 
   public function soals()
@@ -17,8 +17,8 @@ class Pilihan extends Model
     return $this->belongsTo(Soal::class, 'soal_id', 'id');
   }
 
-  public function kuncis()
+  public function pilihans()
   {
-    return $this->hasOne(Kunci::class, 'kunci_id', 'id');
+    return $this->belongsTo(Pilihan::class, 'kunci_id', 'id');
   }
 }

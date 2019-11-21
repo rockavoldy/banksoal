@@ -26,4 +26,9 @@ class Soal extends Model
   {
     return $this->hasMany(Pilihan::class, 'soal_id', 'id');
   }
+
+  public function kuncis()
+  {
+    return $this->hasOne(Kunci::class, 'kunci_id', 'id');
+  }
 }
