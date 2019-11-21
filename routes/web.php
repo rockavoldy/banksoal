@@ -28,5 +28,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             $router->post('/', 'MatpelController@add');
             $router->delete('/{kode}', 'MatpelController@delete');
         });
+
+        $router->group(['prefix' => 'soal'], function () use ($router) {
+            $router->get('/', 'SoalController@getAll');
+            $router->get('/pelajaran/{kode_matpel}', 'SoalController@GetAllWithMatpel');
+            $router->get('/{id}', 'SoalController@GetOne');
+            $router->post('/', 'SoalController@add');
+            $router->delete('/{id}', 'SoalController@delete');
+        });
     });
 });
