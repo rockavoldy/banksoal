@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Matpel extends Model
+class Soal extends Model
 {
   use Models\Concerns\UsesUuid;
 
   protected $fillable = [
-    'guru_id', 'name', 'kode_matpel'
+    'guru_id', 'matpel_id', 'pertanyaan', 'skor'
   ];
 
   public function users()
@@ -17,8 +17,8 @@ class Matpel extends Model
     return $this->belongsTo(User::class, 'guru_id', 'id');
   }
 
-  public function soals()
+  public function matpels()
   {
-    return $this->hasMany(Soal::class, 'matpel_id', 'id');
+    return $this->belongsTo(Matpel::class, 'matpel_id', 'id');
   }
 }

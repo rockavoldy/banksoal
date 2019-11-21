@@ -37,6 +37,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(Matpel::class, 'guru_id', 'id');
     }
 
+    public function soals()
+    {
+        return $this->hasMany(Soal::class, 'guru_id', 'id');
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
