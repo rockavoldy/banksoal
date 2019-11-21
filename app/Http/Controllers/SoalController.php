@@ -71,7 +71,7 @@ class SoalController extends Controller
     $this->validate($request, [
       'pertanyaan' => 'required',
       'skor' => 'required',
-      'kode_matpel' => 'required'
+      'kode_matpel' => 'required|exists:matpels'
     ]);
 
     $soal = new Soal();
