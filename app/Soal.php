@@ -21,4 +21,9 @@ class Soal extends Model
   {
     return $this->belongsTo(Matpel::class, 'matpel_id', 'id');
   }
+
+  public function pilihans()
+  {
+    return $this->hasMany(Pilihan::class, 'soal_id', 'id');
+  }
 }
