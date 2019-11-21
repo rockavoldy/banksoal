@@ -19,7 +19,7 @@ class CreateJawabanTable extends Migration
             $table->foreign('siswa_id')->references('id')->on('users');
             $table->uuid('soal_id');
             $table->foreign('soal_id')->references('id')->on('soals');
-            $table->uuid('pilihan_id');
+            $table->uuid('pilihan_id')->nullable();
             $table->foreign('pilihan_id')->references('id')->on('pilihans');
             $table->timestamps();
         });
