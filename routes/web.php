@@ -51,6 +51,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
         $router->group(['prefix' => 'siswa'], function () use ($router) {
             $router->get('/soal/{matpel_id}', 'Siswa\SoalController@getSoal');
+            $router->post('/soal/{soal_id}', 'Siswa\SoalController@saveJawaban');
         });
     });
 });
