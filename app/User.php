@@ -47,6 +47,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(Jawaban::class, 'siswa_id', 'id');
     }
 
+    public function skors()
+    {
+        return $this->hasMany(Skor::class, 'siswa_id', 'id');
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
