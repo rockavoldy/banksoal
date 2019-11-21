@@ -35,6 +35,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             $router->get('/{id}', 'SoalController@GetOne');
             $router->post('/', 'SoalController@add');
             $router->delete('/{id}', 'SoalController@delete');
+
+            $router->group(['prefix' => '{soal_id}/pilihan'], function () use ($router) {
+                $router->get('/', 'PilihanController@get');
+                $router->post('/', 'PilihanController@add');
+                $router->delete('/{id}', 'PilihanController@delete');
+            });
         });
     });
 });
