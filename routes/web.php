@@ -48,5 +48,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
                 $router->delete('/{id}', 'KunciController@delete');
             });
         });
+
+        $router->group(['prefix' => 'siswa'], function () use ($router) {
+            $router->get('/soal/{matpel_id}', 'Siswa\SoalController@getSoal');
+        });
     });
 });
