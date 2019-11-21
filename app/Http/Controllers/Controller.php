@@ -15,4 +15,12 @@ class Controller extends BaseController
             'expires_in' => Auth::factory()->getTTL() * 3600
         ], 200);
     }
+
+    protected function is_guru()
+    {
+        if (Auth::user()->roles !== "guru") {
+            return response()->json(['message' => 'Not have enough permissions to do this'], 401);
+        }
+        return true;
+    }
 }
