@@ -12,7 +12,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
     use Authenticatable, Authorizable;
-    use App\Models\Concerns\UsesUuid;
+    use Models\Concerns\UsesUuid;
 
     /**
      * The attributes that are mass assignable.
