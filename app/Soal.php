@@ -31,4 +31,9 @@ class Soal extends Model
   {
     return $this->hasOne(Kunci::class, 'soal_id', 'id');
   }
+
+  public function jawabans()
+  {
+    return $this->hasMany(Jawaban::class, 'soal_id', 'id');
+  }
 }

@@ -42,6 +42,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(Soal::class, 'guru_id', 'id');
     }
 
+    public function jawabans()
+    {
+        return $this->hasMany(Jawaban::class, 'siswa_id', 'id');
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

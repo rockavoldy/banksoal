@@ -21,4 +21,9 @@ class Pilihan extends Model
   {
     return $this->hasOne(Kunci::class, 'kunci_id', 'id');
   }
+
+  public function jawabans()
+  {
+    return $this->hasMany(Jawaban::class, 'pilihan_id', 'id');
+  }
 }
