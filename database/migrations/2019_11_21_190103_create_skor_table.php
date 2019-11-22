@@ -17,9 +17,9 @@ class CreateSkorTable extends Migration
             $table->uuid('id')->primary();
             $table->string('siswa_id');
             $table->foreign('siswa_id')->references('id')->on('users');
-            $table->integer('benar')->nullable();
-            $table->integer('skor')->nullable();
-            $table->integer('waktu')->nullable();
+            $table->integer('benar')->nullable()->default(0);
+            $table->integer('skor')->nullable()->default(0);
+            $table->integer('waktu')->nullable()->default(0);
             $table->timestamps();
         });
     }

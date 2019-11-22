@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
@@ -21,6 +23,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('me', 'AuthController@me');
+        $router->get('logout', function () {
+            Auth::logout(true);
+        });
 
         $router->group(['prefix' => 'pelajaran'], function () use ($router) {
             $router->get('/', 'MatpelController@getAll');

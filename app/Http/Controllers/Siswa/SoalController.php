@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jawaban;
 use App\Kunci;
 use App\Matpel;
+use App\Skor;
 use App\Soal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,14 +44,16 @@ class SoalController extends Controller
     if (!$jawaban->save()) {
       return false; // to notify frontend and try to push again
     }
-    $kunci = Kunci::where('soal_id', $soal_id)->first()->kunci_id;
+    $kunci = Kunci::where('soal_id', $soal_id)->first()->id;
     $jawaban_user = $request->pilihan_id;
     if ($kunci === $jawaban_user) {
       $nilai = Soal::find($soal_id)->skor;
       $this->updateSkor(true, $nilai, $request->waktu);
+      return response()->json(['message' => 'success']);
+      exit();
     }
     $this->updateSkor(false, 0, $request->waktu);
-    return true;
+    return response()->json(['message' => 'Success']);
   }
 
   /**
@@ -65,6 +68,7 @@ class SoalController extends Controller
   {
     $skor = Skor::where('siswa_id', Auth::user()->id)->first();
 
+    // return response()->json($skor);
     if (!$skor) {
       $skor = new Skor();
     }
@@ -75,6 +79,7 @@ class SoalController extends Controller
       $skor->skor = $skor->skor + $nilai;
     }
     $skor->waktu = $waktu;
+    $skor->save();
 
     if (!$skor->save()) {
       return false;

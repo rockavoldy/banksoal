@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kunci;
 use App\Pilihan;
 use App\Soal;
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ class PilihanController extends Controller
    */
   public function get($soal_id)
   {
-    $pilihan = Soal::where('id', $soal_id)->with('pilihans')->get();
+    $pilihan = Soal::where('id', $soal_id)->with(['pilihans' => function ($pil) {
+      $pil->with('kuncis');
+    }])->with('kuncis')->get();
     return response()->json(['data' => $pilihan], 200);
   }
 
@@ -42,18 +45,23 @@ class PilihanController extends Controller
   {
     $this->is_guru();
 
-    $this->validate($request, [
-      'pilihan' => 'required'
-    ]);
-
-    $pilihan = new Pilihan();
-    $pilihan->pilihan = $request->pilihan;
-
-    $soal = Soal::find($soal_id);
-
-    if (!$soal->pilihans()->save($pilihan)) {
-      return response()->json(['message' => 'Error can not add new Pilihan Jawaban for now'], 404);
+    // $this->validate($request, [
+    //   'pilihan' => 'required'
+    // ]);
+    foreach ($request->pilihan as $pil) {
+      $pilihan = new Pilihan();
+      $pilihan->pilihan = $pil['pilihan'];
+      $soal = Soal::find($soal_id);
+      $soal->pilihans()->save($pilihan);
     }
+    // $pilihan = new Pilihan();
+    // $pilihan->pilihan = $request->pilihan;
+
+    // $soal = Soal::find($soal_id);
+
+    // if (!$soal->pilihans()->save($pilihan)) {
+    //   return response()->json(['message' => 'Error can not add new Pilihan Jawaban for now'], 404);
+    // }
 
     return response()->json(['message' => 'Pilihan Jawaban created', 'data' => $pilihan], 200);
   }

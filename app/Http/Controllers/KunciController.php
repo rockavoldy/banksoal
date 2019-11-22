@@ -46,7 +46,12 @@ class KunciController extends Controller
     $this->validate($request, [
       'kunci_id' => 'required|exists:pilihans,id'
     ]);
-
+    $check = Kunci::where('soal_id', $soal_id)->get();
+    if ($check) {
+      foreach ($check as $cek) {
+        $cek->delete();
+      }
+    }
     $kunci = new Kunci();
     $kunci->kunci_id = $request->kunci_id;
 
