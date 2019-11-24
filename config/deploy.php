@@ -52,6 +52,7 @@ return [
         // Code and composer vendors are ready but nothing is built.
         'build' => [
             //
+            'artisan:jwt:secret',
         ],
         
         // Deployment is done but not live yet (before symlink)
@@ -63,7 +64,7 @@ return [
         
         // Deployment is done and live
         'done' => [
-            'fpm:reload',
+            // 'fpm:reload',
         ],
         
         // Deployment succeeded.
@@ -89,7 +90,7 @@ return [
     */
 
     'options' => [
-        'application' => env('APP_NAME', 'Bank Soal'),
+        'application' => env('APP_NAME', 'banksoal'),
         'repository' => 'https://github.com/rockavoldy/banksoal.git',
         'php_fpm_service' => 'php-fpm',
     ],
@@ -106,7 +107,7 @@ return [
     */
 
     'hosts' => [
-        'ujian.akhmad.id/api' => [
+        'banksoalapi' => [
             'deploy_path' => '/data/wwwroot/ujian.akhmad.id/api',
             'user' => 'deploy',
             'sshOptions' => [
