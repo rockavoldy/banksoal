@@ -89,8 +89,8 @@ return [
     */
 
     'options' => [
-        'application' => env('APP_NAME', 'BankSoal'),
-        'repository' => 'git@github.com:rockavoldy/banksoal.git',
+        'application' => env('APP_NAME', 'Bank Soal'),
+        'repository' => 'https://github.com/rockavoldy/banksoal.git',
         'php_fpm_service' => 'php-fpm',
     ],
 
@@ -107,7 +107,7 @@ return [
 
     'hosts' => [
         'ujian.akhmad.id/api' => [
-            'deploy_path' => '/data/wwwroot/ujian.akhmad.id/api/',
+            'deploy_path' => '/data/wwwroot/ujian.akhmad.id/api',
             'user' => 'deploy',
             'sshOptions' => [
                 'port' => 2244
