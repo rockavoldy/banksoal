@@ -7,7 +7,7 @@ require 'recipe/laravel.php';
 set('application', 'banksoal API');
 
 // Project repository
-set('repository', 'git@github.com:rockavoldy/banksoal.git');
+set('repository', 'https://github.com/rockavoldy/banksoal.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
