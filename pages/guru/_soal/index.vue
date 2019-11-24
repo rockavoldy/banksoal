@@ -8,7 +8,7 @@
               <v-toolbar flat color="white">
                 <v-toolbar-title>Soal</v-toolbar-title>
                 <v-spacer />
-                <v-btn class="mb-2 mr-2" nuxt to="/guru/PGD/nilai" color="success">Nilai Siswa</v-btn>
+                <v-btn class="mb-2 mr-2" nuxt :to="'/guru/'+$route.params.soal + '/nilai'" color="success">Nilai Siswa</v-btn>
                 <v-dialog v-model="newItemDialog" max-width="500px">
                   <template v-slot:activator="{ on }">
                     <v-btn color="primary" dark class="mb-2" v-on="on">Tambah</v-btn>
