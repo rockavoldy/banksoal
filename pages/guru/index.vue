@@ -3,7 +3,7 @@
     <v-flex xs12 sm10>
       <v-card>
         <v-card-text>
-          <v-data-table :headers="headers" :items="items" class="elevation-1" @click:row="clickRow">
+          <v-data-table :headers="headers" :items="items" class="elevation-1">
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-toolbar-title>Mata Pelajaran</v-toolbar-title>
@@ -39,6 +39,7 @@
               </v-toolbar>
             </template>
             <template v-slot:item.action="{ item }">
+              <v-icon small @click="showMatpel(item)">mdi-eye</v-icon>
               <v-icon small @click="deleteMatpel(item)">mdi-delete</v-icon>
             </template>
             <template v-slot:no-data>
@@ -123,9 +124,8 @@ export default {
           console.log(err);
         });
     },
-    async clickRow(value) {
-      this.$router.push("/guru/" + value.kode_matpel);
-      await console.log(value.kode_matpel);
+    async showMatpel(item) {
+      await this.$router.push("/guru/" + item.kode_matpel);
     }
   }
 };
