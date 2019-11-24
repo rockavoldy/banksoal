@@ -24,7 +24,7 @@ add('writable_dirs', []);
 
 host('dev.akhmad.id')
     ->set('user', 'deploy')
-    ->set('port', 2244)
+    ->port(2244)
     ->set('deploy_path', '~/data/wwwroot/dev.akhmad.id/ujian');
 
 // Tasks
