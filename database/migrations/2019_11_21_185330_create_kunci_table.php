@@ -16,9 +16,9 @@ class CreateKunciTable extends Migration
         Schema::create('kuncis', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('soal_id');
-            $table->foreign('soal_id')->references('id')->on('soals');
+            $table->foreign('soal_id')->references('id')->on('soals')->onDelete('cascade')->onDelete('cascade');
             $table->string('kunci_id');
-            $table->foreign('kunci_id')->references('id')->on('pilihans');
+            $table->foreign('kunci_id')->references('id')->on('pilihans')->onDelete('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

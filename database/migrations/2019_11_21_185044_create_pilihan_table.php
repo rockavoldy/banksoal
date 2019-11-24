@@ -16,7 +16,7 @@ class CreatePilihanTable extends Migration
         Schema::create('pilihans', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('soal_id');
-            $table->foreign('soal_id')->references('id')->on('soals');
+            $table->foreign('soal_id')->references('id')->on('soals')->onUpdate('cascade')->onDelete('cascade');
             $table->text('pilihan');
             $table->timestamps();
         });
