@@ -64,7 +64,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(pilihan, index) in pilihanJawaban" :key="index">
+                <tr v-for="(pilihan, index) in pilihanJawaban" :key="pilihan.id">
                   <td>
                     <v-textarea
                       readonly
@@ -98,7 +98,7 @@
         </v-card-title>
         <v-form @submit.prevent="addChoices()">
           <v-card-text>
-            <v-row v-for="(pilihan, index) in tambahPilihan" :key="index">
+            <v-row v-for="(pilihan, index) in tambahPilihan" :key="pilihan.id">
               <v-col cols="12">
                 <v-textarea outlined v-model="pilihan.pilihan" :label="'Pilihan ke-'+(index+1)" />
               </v-col>
@@ -173,6 +173,11 @@ export default {
     },
     async clear() {
       this.initialize();
+      this.tambah.pertanyaan = null;
+      this.tambah.skor = null;
+      this.tambahPilihan.pilihan = null;
+      this.soal_id = null;
+      this.pilihanKunci = null;
       this.newItemDialog = false;
       this.addJawabanDialog = false;
       this.showJawabanDialog = false;
