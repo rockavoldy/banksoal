@@ -49,7 +49,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function skors()
     {
-        return $this->hasMany(Skor::class, 'siswa_id', 'id');
+        return $this->hasOne(Skor::class, 'siswa_id', 'id');
     }
 
     /**
