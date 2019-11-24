@@ -8,6 +8,7 @@
               <v-toolbar flat color="white">
                 <v-toolbar-title>Soal</v-toolbar-title>
                 <v-spacer />
+                <v-btn class="mb-2 mr-2" nuxt to="/guru/PGD/nilai" color="success">Nilai Siswa</v-btn>
                 <v-dialog v-model="newItemDialog" max-width="500px">
                   <template v-slot:activator="{ on }">
                     <v-btn color="primary" dark class="mb-2" v-on="on">Tambah</v-btn>
@@ -243,7 +244,8 @@ export default {
         });
     },
     async saveKunci() {
-      await this.$axios
+      this.pilihanKunci
+      ? await this.$axios
         .post("/api/soal/" + this.soal_id + "/kunci", {
           kunci_id: this.pilihanKunci
         })
@@ -253,7 +255,9 @@ export default {
         })
         .catch(err => {
           console.log(err.response);
-        });
+        })
+      : console.error('Belum memilih salah satu pilihan  jawaban');
+      this.clear();
     },
     async deletePilihan(pilihan_id) {
       if (confirm("Anda yakin akan menghapus pilihan jawaban ini?"))
