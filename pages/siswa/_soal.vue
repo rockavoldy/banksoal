@@ -11,7 +11,7 @@
           </v-card>
           <h4 class="ml-1">Pilihan Jawaban</h4>
           <v-item-group v-model="jawaban">
-            <div class="mt-2" v-for="(item, index) in soalSaatIni.pilihans" :key="index">
+            <div class="mt-2" v-for="item in soalSaatIni.pilihans" :key="item.id">
               <v-item v-slot:default="{ active, toggle }" :value="item.id">
                 <v-card
                   :color="active ? 'blue darken-1' : 'grey lighten-3'"
