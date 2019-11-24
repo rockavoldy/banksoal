@@ -24,4 +24,4 @@ deploy:
     branch: backend
 before_install:
 - openssl aes-256-cbc -K $encrypted_a48597c1c1ce_key -iv $encrypted_a48597c1c1ce_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
+  -in deploy_rsa.enc -out /tmp/deploy_rsa -d
