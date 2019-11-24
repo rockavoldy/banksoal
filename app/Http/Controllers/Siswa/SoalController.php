@@ -8,6 +8,7 @@ use App\Kunci;
 use App\Matpel;
 use App\Skor;
 use App\Soal;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,25 +36,39 @@ class SoalController extends Controller
    */
   public function saveJawaban(Request $request, $soal_id)
   {
+
+    $soal = Soal::find($soal_id);
     $jawaban = new Jawaban();
 
-    $jawaban->siswa_id = Auth::user()->id;
     $jawaban->soal_id = $soal_id;
     $jawaban->pilihan_id = $request->pilihan_id;
 
-    if (!$jawaban->save()) {
-      return false; // to notify frontend and try to push again
-    }
-    $kunci = Kunci::where('soal_id', $soal_id)->first()->id;
+    $kunci = Kunci::where('soal_id', $soal_id)->first()->kunci_id;
     $jawaban_user = $request->pilihan_id;
-    if ($kunci === $jawaban_user) {
-      $nilai = Soal::find($soal_id)->skor;
-      $this->updateSkor(true, $nilai, $request->waktu);
-      return response()->json(['message' => 'success']);
-      exit();
+
+    if ($kunci == $jawaban_user) {
+      $jawaban->is_benar = true;
+    } else {
+      $jawaban->is_benar = false;
     }
-    $this->updateSkor(false, 0, $request->waktu);
-    return response()->json(['message' => 'Success']);
+
+    $user = User::find(Auth::user()->id);
+    if ($user->jawabans()->save($jawaban)) {
+      if (!$skor = Skor::where('siswa_id', Auth::user()->id)->first()) {
+        $skor = new Skor();
+        $skor->benar = 0;
+        $skor->skor = 0;
+        $skor->waktu = 0;
+      } 
+
+      if ($jawaban->is_benar) {
+        $skor->benar += 1;
+        $skor->skor += $soal->skor;
+      }
+      $user->skors()->save($skor);
+      return response()->json(['message' => 'success'], 200);
+    }
+    return response()->json(['message' => 'failed'], 404);
   }
 
   /**
@@ -68,7 +83,8 @@ class SoalController extends Controller
   {
     $skor = Skor::where('siswa_id', Auth::user()->id)->first();
 
-    // return response()->json($skor);
+    return response()->json($skor);
+    exit();
     if (!$skor) {
       $skor = new Skor();
     }
