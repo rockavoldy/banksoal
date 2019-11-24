@@ -57,7 +57,7 @@ export default {
   methods: {
     async initialize() {
       await this.$axios
-        .get("/api/siswa/soal/" + this.$route.params.soal)
+        .get("/siswa/soal/" + this.$route.params.soal)
         .then(result => {
           this.soal = result.data.data;
           console.log(this.soal);
@@ -71,7 +71,7 @@ export default {
     },
     async simpan() {
       await this.$axios
-        .post("/api/siswa/soal/" + this.soalSaatIni.id, {
+        .post("/siswa/soal/" + this.soalSaatIni.id, {
           pilihan_id: this.jawaban
         })
         .then(result => {

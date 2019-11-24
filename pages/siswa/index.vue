@@ -46,7 +46,7 @@ export default {
   methods: {
     async initialize() {
       await this.$axios
-        .get("/api/pelajaran")
+        .get("/pelajaran")
         .then(result => {
           this.items = result.data.data;
         })

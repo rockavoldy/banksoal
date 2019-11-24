@@ -163,7 +163,7 @@ export default {
   methods: {
     async initialize() {
       await this.$axios
-        .get("/api/soal/pelajaran/" + this.$route.params.soal)
+        .get("/soal/pelajaran/" + this.$route.params.soal)
         .then(result => {
           console.log(result);
           this.items = result.data.data[0].soals;
@@ -185,7 +185,7 @@ export default {
     },
     async addSoal() {
       await this.$axios
-        .post("/api/soal", {
+        .post("/soal", {
           pertanyaan: this.tambah.pertanyaan,
           skor: this.tambah.skor,
           kode_matpel: this.$route.params.soal
@@ -202,7 +202,7 @@ export default {
     async deleteSoal(item) {
       if (confirm("Anda yakin akan menghapus soal ini?"))
         await this.$axios
-          .delete("/api/soal/" + item.id)
+          .delete("/soal/" + item.id)
           .then(result => {
             alert("Berhasil hapus Mata Pelajaran");
             this.clear();
@@ -219,7 +219,7 @@ export default {
     async lihatJawaban(item) {
       this.soal_id = item.id;
       await this.$axios
-        .$get("/api/soal/" + this.soal_id + "/pilihan")
+        .$get("/soal/" + this.soal_id + "/pilihan")
         .then(result => {
           console.log(result);
           this.pilihanJawaban = result.data[0].pilihans;
@@ -232,7 +232,7 @@ export default {
     },
     async addChoices() {
       await this.$axios
-        .post("/api/soal/" + this.soal_id + "/pilihan", {
+        .post("/soal/" + this.soal_id + "/pilihan", {
           pilihan: this.tambahPilihan
         })
         .then(result => {
@@ -246,7 +246,7 @@ export default {
     async saveKunci() {
       this.pilihanKunci
       ? await this.$axios
-        .post("/api/soal/" + this.soal_id + "/kunci", {
+        .post("/soal/" + this.soal_id + "/kunci", {
           kunci_id: this.pilihanKunci
         })
         .then(result => {
@@ -262,7 +262,7 @@ export default {
     async deletePilihan(pilihan_id) {
       if (confirm("Anda yakin akan menghapus pilihan jawaban ini?"))
         await this.$axios
-          .delete("/api/soal/" + this.soal_id + "/pilihan/" + pilihan_id)
+          .delete("/soal/" + this.soal_id + "/pilihan/" + pilihan_id)
           .then(result => {
             alert("Berhasil hapus Pilihan Jawban");
             this.clear();

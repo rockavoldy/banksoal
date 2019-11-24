@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  middleware: "guru",
   data() {
     return {
       headers: [
@@ -49,7 +50,7 @@ export default {
   },
   methods: {
     async initialize() {
-      await this.$axios.get('/api/nilai').then(result => {
+      await this.$axios.get('/nilai').then(result => {
         this.siswa = result.data.data;
       }).catch(err => {
         console.log(err.response);

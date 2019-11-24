@@ -90,7 +90,7 @@ export default {
   methods: {
     async initialize() {
       await this.$axios
-        .get("/api/pelajaran")
+        .get("/pelajaran")
         .then(result => {
           this.items = result.data.data;
         })
@@ -100,7 +100,7 @@ export default {
     },
     async addMatpel() {
       await this.$axios
-        .post("/api/pelajaran", {
+        .post("/pelajaran", {
           name: this.tambah.nama,
           kode_matpel: this.tambah.kode
         })
@@ -115,7 +115,7 @@ export default {
     },
     async deleteMatpel(item) {
       await this.$axios
-        .delete("/api/pelajaran/" + item.kode_matpel)
+        .delete("/pelajaran/" + item.kode_matpel)
         .then(result => {
           alert("Berhasil hapus Mata Pelajaran");
           this.initialize();
