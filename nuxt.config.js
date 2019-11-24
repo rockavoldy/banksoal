@@ -6,8 +6,8 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%s - " + process.env.npm_package_name,
-    title: process.env.npm_package_name || "",
+    // titleTemplate: "%s - " + process.env.npm_package_name,
+    title: "Sistem Ujian Online",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -52,16 +52,16 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "http://backend.test"
+    baseURL: process.env.NODE_ENV === 'production' ? "https://ujian.akhmad.id/api/" : "http://backend.test/api/"
   },
 
   auth: {
     strategies: {
       local: {
         endpoints: {
-          login: { url: "/api/login", method: "post", propertyName: "token" },
-          logout: { url: "/api/logout", method: "get" },
-          user: { url: "/api/me", method: "get", propertyName: "user" }
+          login: { url: "/login", method: "post", propertyName: "token" },
+          logout: { url: "/logout", method: "get" },
+          user: { url: "/me", method: "get", propertyName: "user" }
         },
         tokenRequired: true,
         tokenType: "bearer"
