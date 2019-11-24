@@ -34,10 +34,10 @@
     </v-content>
     <v-footer app>
       <v-spacer></v-spacer>
-      <div class="overline font-regular text-center">
-        <span class="text-center font-mono">
-          Made with &hearts; in
-          <b>Bandung</b> 2019
+      <div class="text-center">
+        <span class="text-center font-mono overline">
+          Made with <v-icon color="red" class="caption">mdi-heart</v-icon> in
+          <strong class="font-weight-bold">Bandung</strong>
         </span>
       </div>
       <v-spacer></v-spacer>
