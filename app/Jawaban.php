@@ -9,7 +9,7 @@ class Jawaban extends Model
   use Models\Concerns\UsesUuid;
 
   protected $fillable = [
-    'siswa_id', 'soal_id', 'pilihan_id'
+    'siswa_id', 'soal_id', 'pilihan_id', 'is_benar', 'alasan'
   ];
 
   public function users()
