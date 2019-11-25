@@ -107,7 +107,7 @@ return [
 
     'hosts' => [
         'banksoalapi' => [
-            'deploy_path' => '/data/wwwroot/ujian.akhmad.id/api',
+            'deploy_path' => '/data/wwwroot/apiujian.akhmad.id/api',
             'user' => 'deploy',
             'sshOptions' => [
                 'port' => 2244
