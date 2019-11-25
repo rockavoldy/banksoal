@@ -21,6 +21,7 @@ class CreateJawabanTable extends Migration
             $table->foreign('soal_id')->references('id')->on('soals');
             $table->uuid('pilihan_id')->nullable();
             $table->foreign('pilihan_id')->references('id')->on('pilihans');
+            $table->text('alasan')->nullable();
             $table->boolean('is_benar');
             $table->timestamps();
         });

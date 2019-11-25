@@ -16,7 +16,7 @@ class SoalController extends Controller
 {
   /**
    * get Soal random/user access
-   * 
+   *
    * @param String matpel_id
    * @return Response
    */
@@ -31,7 +31,7 @@ class SoalController extends Controller
 
   /**
    * save Jawaban siswa
-   * 
+   *
    * @param String Request->pilihan_id
    * @param String soal_id
    */
@@ -43,6 +43,7 @@ class SoalController extends Controller
 
     $jawaban->soal_id = $soal_id;
     $jawaban->pilihan_id = $request->pilihan_id;
+    $jawaban->alasan = $request->alasan;
 
     $kunci = Kunci::where('soal_id', $soal_id)->first()->kunci_id;
     $jawaban_user = $request->pilihan_id;
@@ -60,7 +61,7 @@ class SoalController extends Controller
         $skor->benar = 0;
         $skor->skor = 0;
         $skor->waktu = 0;
-      } 
+      }
 
       if ($jawaban->is_benar) {
         $skor->benar += 1;
