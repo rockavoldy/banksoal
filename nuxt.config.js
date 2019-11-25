@@ -52,7 +52,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? "https://ujian.akhmad.id/api/" : "http://backend.test/api/"
+    baseURL: process.env.NODE_ENV === 'production' ? "https://apiujian.akhmad.id/api/" : "http://backend.test/api/"
   },
 
   auth: {
