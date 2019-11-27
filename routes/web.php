@@ -24,6 +24,7 @@ $router->group([], function () use ($router) {
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('me', 'AuthController@me');
         $router->get('nilai', 'NilaiController@get');
+        $router->get('nilai/{siswa_id}', 'NilaiController@getSiswa');
         $router->get('logout', function () {
             Auth::logout(true);
         });

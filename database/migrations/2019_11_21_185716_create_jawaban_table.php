@@ -23,6 +23,7 @@ class CreateJawabanTable extends Migration
             $table->foreign('pilihan_id')->references('id')->on('pilihans');
             $table->text('alasan')->nullable();
             $table->boolean('is_benar');
+            $table->boolean('is_alasan_benar')->default(0);
             $table->timestamps();
         });
     }
