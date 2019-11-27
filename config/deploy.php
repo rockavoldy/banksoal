@@ -58,6 +58,7 @@ return [
         'ready' => [
             'artisan:cache:clear',
             'artisan:migrate',
+            'artisan:db:seed'
             // 'artisan:horizon:terminate',
         ],
 
